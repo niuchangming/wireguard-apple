@@ -24,9 +24,10 @@ GOOS_iphoneos := ios
 build: $(DESTDIR)/libwg-go.a
 version-header: $(DESTDIR)/wireguard-go-version.h
 
-REAL_GOROOT := /opt/homebrew/Cellar/go/1.24.3/libexec 
-export GOROOT := /opt/homebrew/Cellar/go/1.24.3/libexec
+REAL_GOROOT := $(shell go env GOROOT 2>/dev/null)
+export GOROOT := $(BUILDDIR)/goroot
 $(GOROOT)/.prepared:
+	@echo "REAL_GOROOT='$(REAL_GOROOT)'"
 	[ -n "$(REAL_GOROOT)" ]
 	mkdir -p "$(GOROOT)"
 	rsync -a --delete --exclude=pkg/obj/go-build "$(REAL_GOROOT)/" "$(GOROOT)/"
