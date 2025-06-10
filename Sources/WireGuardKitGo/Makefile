@@ -25,7 +25,7 @@ build: $(DESTDIR)/libwg-go.a
 version-header: $(DESTDIR)/wireguard-go-version.h
 
 REAL_GOROOT := /opt/homebrew/Cellar/go/1.24.3/libexec 
-export GOROOT := $(BUILDDIR)/goroot
+export GOROOT := /opt/homebrew/Cellar/go/1.24.3/libexec
 $(GOROOT)/.prepared:
 	[ -n "$(REAL_GOROOT)" ]
 	mkdir -p "$(GOROOT)"
