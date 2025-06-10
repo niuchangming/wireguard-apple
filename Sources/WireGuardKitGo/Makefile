@@ -25,9 +25,10 @@ build: $(DESTDIR)/libwg-go.a
 version-header: $(DESTDIR)/wireguard-go-version.h
 
 REAL_GOROOT := $(shell go env GOROOT 2>/dev/null)
-@echo "TEST_GOROOT='$(go env GOROOT)'"
 export GOROOT := $(BUILDDIR)/goroot
 $(GOROOT)/.prepared:
+	@echo "LIPO='$(LIPO)'"
+	@echo "BUILDDIR='$(BUILDDIR)'"
 	@echo "REAL_GOROOT='$(REAL_GOROOT)'"
 	[ -n "$(REAL_GOROOT)" ]
 	mkdir -p "$(GOROOT)"
